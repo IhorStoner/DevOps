@@ -1,1 +1,3 @@
 /.idea
+./terraform/*/credentials.tf
+./terraform/*/LL-TEST.pem
