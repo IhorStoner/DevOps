@@ -1,9 +1,6 @@
 pipeline {
     agent any
 
-    parameters{
-        string(name: 'BRANCH', defaultValue:'master',  description: 'If you need custom build - type the tag or custom branch and select desired Run Type' )
-    }
 
     stages {
         stage('Docker Build') {
@@ -11,13 +8,10 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
                 }
-                 def scmGit = checkout(
-                    poll: false,
-                    changelog:false,
-                    scm: [
-                        branches: [[name: params.BRANCH]],
-                        userRemoteConfigs: [[url: 'git@github.com:IhorStoner/bangok.git', credentialsId: "ssh-github"]],
-                    ]
+                checkout scm: ([
+                    $class: 'GitSCM',
+                    userRemoteConfigs: [[credentialsId: 'ssh-github', url: 'git@github.com:IhorStoner/bangok.git']],
+                    branches: [[name: */master']]
                 ])
 
                 sh 'docker build . --file Dockerfile --tag ihorstoner/bangok:latest'
