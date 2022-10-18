@@ -11,7 +11,7 @@ pipeline {
                 checkout scm: ([
                     $class: 'GitSCM',
                     userRemoteConfigs: [[credentialsId: 'ssh-github', url: 'git@github.com:IhorStoner/bangok.git']],
-                    branches: [[name: */master']]
+                    branches: [[name: '*/master']]
                 ])
 
                 sh 'docker build . --file Dockerfile --tag ihorstoner/bangok:latest'
