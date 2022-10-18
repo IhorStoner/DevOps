@@ -5,7 +5,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh "docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD"
+                    sh 'docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
                 }
 
                 sh "docker build . --file Dockerfile --tag ihorstoner/bangok:latest"
