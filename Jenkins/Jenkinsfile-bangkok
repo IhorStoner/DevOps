@@ -7,6 +7,9 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD'
                 }
+                git branch: '/master',
+                                credentialsId: 'ssh-github',
+                                url: 'git@github.com:IhorStoner/bangok.git'
 
                 sh 'docker build . --file Dockerfile --tag ihorstoner/bangok:latest'
                 sh 'docker push ihorstoner/bangok:latest'
