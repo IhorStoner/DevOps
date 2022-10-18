@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environments {
-
-    }
-
     stages {
         stage('Docker Build') {
             steps {
@@ -16,7 +12,7 @@ pipeline {
                 sh "docker push ihorstoner/bangok:latest"
             }
         }
-        stage('Docker Build') {
+        stage('Deploy') {
             steps {
                 sh "docker pull ihorstoner/bangok:latest"
                 sh "docker run --name docker_hw -d -p 5000:5000 --env ORIGIN_URI=http://54.189.167.179 ihorstoner/bangok:latest"
