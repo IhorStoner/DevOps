@@ -1,4 +1,10 @@
 /.idea
-./terraform/*/credentials.tf
-./terraform/*/LL-TEST.pem
-*.cer
+/terraform/**/credentials.tf
+/terraform/**/LL-TEST.pem
+/terraform/us-west-2/.terraform.lock.hcl
+/terraform/us-west-2/terraform.tfstate
+/terraform/us-west-2/terraform.tfstate.backup
+/terraform/us-west-2/.terraform
+
+**/devops.cer
+new_user_credentials.csv
