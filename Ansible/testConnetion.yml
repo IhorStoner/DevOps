@@ -1,0 +1,8 @@
+---
+- name: Test connection to servers
+  hosts: EC2_INSTANCES
+  become: yes
+
+  tasks:
+    - name: Ping my servers
+      ping:
