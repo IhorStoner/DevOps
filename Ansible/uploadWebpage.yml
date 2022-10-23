@@ -1,6 +1,6 @@
 ---
 - name: Install apache and upload web app
-  hosts: "{{ MY_HOSTS }}"
+  hosts: tag_Name_Apache
   become: yes
 
   roles:

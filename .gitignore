@@ -6,5 +6,6 @@
 /terraform/us-west-2/terraform.tfstate.backup
 /terraform/us-west-2/.terraform
 
-**/devops.cer
+Ansible/credentials/**
 new_user_credentials.csv
+/devops.cer

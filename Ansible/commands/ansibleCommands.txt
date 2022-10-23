@@ -1,0 +1,2 @@
+ansible-playbook uploadWebpage.yml
+ansible-playbook uploadWebpage.yml --ask-vault-pass
