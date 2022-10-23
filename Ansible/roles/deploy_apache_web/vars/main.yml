@@ -1,0 +1,4 @@
+---
+# vars file for deploy_apache_web
+source_file: ./webApp/
+destination_path: /var/www/html

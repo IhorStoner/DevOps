@@ -6,4 +6,4 @@ APACHE_SERVERS
 nginx ansible_host=54.200.145.79
 
 [APACHE_SERVERS]
-apache ansible_host=34.212.174.233
+apache ansible_host=52.25.245.214

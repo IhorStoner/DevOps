@@ -1,48 +1,7 @@
 ---
-- name: Test connection to servers
-  hosts: APACHE_SERVERS
+- name: Install apache and upload web app
+  hosts: "{{ MY_HOSTS }}"
   become: yes
 
-  vars:
-    source_file: ./webApp/
-    destination_path: /var/www/html
-
-  tasks:
-    - name: Check and print OS version
-      debug:
-        var: ansible_os_family
-
-    - block: #====== Block for RedHat
-        - name: Install apache for RedHat
-          yum: name=httpd state=latest
-
-        - name: Run apache for RedHat
-          service: name=httpd state=started enabled=yes
-      when: ansible_os_family == "RedHat"
-
-    - block: #====== Block for Debian
-        - name: Install apache for Debian
-          when: ansible_os_family == "Debian"
-          apt: name=apache2 state=latest
-
-        - name: Run apache for Debian
-          service: name=apache2 state=started enabled=yes
-      when: ansible_os_family == "Debian"
-
-    - name: Copy files
-      copy: src={{ source_file }} dest={{ destination_path }} mode=0555
-      notify:
-        - Restart apache RedHat
-        - Restart apache Debian
-
-  handlers:
-    - name: Restart apache RedHat
-      when: ansible_os_family == "RedHat"
-      service: name=httpd state=restarted
-
-    - name: Restart apache Debian
-      when: ansible_os_family == "Debian"
-      service: name=apache2 state=restarted
-
-
-
+  roles:
+    - { role: deploy_apache_web, when: ansible_system == 'Linux' }

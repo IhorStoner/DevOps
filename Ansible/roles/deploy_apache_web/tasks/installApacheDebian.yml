@@ -1,0 +1,8 @@
+- block: #====== Block for Debian
+    - name: Install apache for Debian
+      when: ansible_os_family == "Debian"
+      apt: name=apache2 state=latest
+
+    - name: Run apache for Debian
+      service: name=apache2 state=started enabled=yes
+  when: ansible_os_family == "Debian"

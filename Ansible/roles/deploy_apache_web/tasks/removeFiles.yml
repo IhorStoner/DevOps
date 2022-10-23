@@ -1,0 +1,6 @@
+- name: Remove files
+    - shell: ls -1 {{ destination_path }}
+      register: contents
+
+    - file: path={{ destination_path }}/{{ item }} state=absent
+      with_items: {{ contents.stdout_lines }}
