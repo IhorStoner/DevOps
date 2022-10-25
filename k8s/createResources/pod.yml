@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bangok
+  labels:
+    app: webApp
+    type: nodeJS
+spec:
+  containers:
+    - name: container-bangok
+      image: ihorstoner/bangok:latest
+      ports:
+        - containerPort: 80

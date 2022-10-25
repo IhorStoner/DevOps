@@ -1,0 +1,12 @@
+Install && Setup:
+1. brew install google-cloud-sdk
+2. gcloud init
+3. gcloud services enable container.googleapis.com
+
+Start cluster:
+1. gcloud container clusters create devops --num-nodes=3
+2. gcloud container clusters get-credentials devops
+
+
+Delete:
+gcloud container clusters delete devops

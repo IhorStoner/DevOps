@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bangok
+  labels:
+    app: bangok-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bangok-pod
+  template:
+    metadata:
+      labels:
+        app: bangok-pod
+    spec:
+      containers:
+        - name: bangok
+          image: ihorstoner/bangok:latest
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bangok
+  labels:
+    app: bangok-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: bangok-pod
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 80
+      targetPort: 80
+

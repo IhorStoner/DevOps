@@ -1,0 +1,30 @@
+Helpers:
+
+kubectl logs webphone-healthcheck-6d87dd7d89-bllb2 -n webrtc
+kubectl apply -f azure-webphone-healthcheck.yaml -n webrtc
+kubectl delete -f azure-webphone-healthcheck.yaml
+kubectl describe pods webphone-healthcheck-6d87dd7d89-bllb2 -n webrtc
+kubectl get pods -n webrtc
+kubectl exec --stdin --tty webphone-healthcheck-6d87dd7d89-7krjm -n webrtc -- /bin/bash
+docker exec -t -i 8c1b7028a5b7 /bin/bash
+kubectl create secret generic webphone-vapid-keys --from-file=publicKey=./public.txt --from-file=privateKey=./private.txt -n webrtc
+kubectl cp webphone-healthcheck-c4786c6b6-ghf45:/usr/src/webphone-healthcheck/packages/codeceptjs/output -n webrtc $HOME/Downloads
+
+
+Change node label:
+kubectl label1 node node2 node-role.kubernetes.io/worker=
+
+Pods:
+kubectl run bangok --image=ihorstoner/bangok:latest --port=80
+kubectl delete pods bangok
+kubectl create -f createPod.yml
+
+Deployment:
+kubectl create deployment bangok --image=ihorstoner/bangok:latest --port=80
+kubectl scale deployment bangok --replicas=1
+
+Service:
+kubectl expose deployment bangok --type=NodePort --port 80
+kubectl expose deployment bangok --type=LoadBalancer --port 80
+kubectl describe nodes | grep ExternalIP
+kubectl delete service bangok
