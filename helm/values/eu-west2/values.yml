@@ -1,0 +1,10 @@
+image:
+  repository: ihorstoner/bangok
+  tag: "latest"
+
+ingress:
+  hosts:
+    - host: beautyhouse.pp.ua
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

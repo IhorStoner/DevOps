@@ -1,0 +1,3 @@
+helm install bangok ./bangok -f values/eu-west2/values.yml
+helm delete bangok
+helm list

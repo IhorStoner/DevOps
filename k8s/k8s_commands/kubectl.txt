@@ -28,3 +28,12 @@ kubectl expose deployment bangok --type=NodePort --port 80
 kubectl expose deployment bangok --type=LoadBalancer --port 80
 kubectl describe nodes | grep ExternalIP
 kubectl delete service bangok
+
+Ingress Controller nginx:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/cloud/deploy.yaml
+kubectl get services -n ingress-nginx
+
+### Install Ingress Controller: Contour
+kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
+kubectl get services -n projectcontour envoy -o wide
+kubectl delete ns projectcontour
