@@ -1,0 +1,9 @@
+---
+# handlers file for ./roles/php
+- name: Restart apache
+  when: ansible_os_family == "RedHat"
+  service: name=httpd state=restarted
+
+- name: Restart php-fpm
+  when: ansible_os_family == "RedHat"
+  service: name=php-fpm state=restarted

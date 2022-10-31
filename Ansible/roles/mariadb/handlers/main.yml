@@ -1,0 +1,11 @@
+---
+# handlers file for ./roles/mysql
+- name: restart mariadb
+  service:
+    name: mariadb
+    state: restarted
+
+- name: Restart apache
+  service:
+    name: httpd
+    state: restarted

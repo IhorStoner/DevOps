@@ -1,0 +1,13 @@
+---
+# tasks file for ./roles/php
+- block:
+    - name: Installing php
+      yum:
+        name:
+          - php
+        state: latest
+
+    - name: install PHP script with database
+      template: src=index.php dest=/var/www/html/index.php mode=0664
+      notify:
+      - Restart apache

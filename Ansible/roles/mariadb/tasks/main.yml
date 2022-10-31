@@ -1,0 +1,9 @@
+---
+# tasks file for ./roles/mariadb
+- include_tasks: set_facts.yml
+
+- include_tasks: mariadb.yml
+
+- include_tasks: config_users.yml
+
+- include_tasks: createdb.yml

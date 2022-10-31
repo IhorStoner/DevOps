@@ -1,0 +1,26 @@
+---
+# vars file for ./roles/mariadb
+root_pass: "123456789"
+db_user: "demo"
+db_pass: "demo"
+db_name: "demo"
+
+# - name: test-user
+#   password: testpass
+#   state: present
+#   privs:
+#     - db: test-db
+#       append_privs: true
+#       host: localhost
+#       table: "*"
+#       priv: ALL
+#     - db: test-db
+#       append_privs: true
+#       host: 127.0.0.1
+#       table: "*"
+#       priv: ALL
+#     - db: test-db
+#       append_privs: true
+#       host: "%"
+#       table: "*"
+#       priv: ALL

@@ -1,0 +1,22 @@
+---
+- name: set_facts | Setting RedHat Facts
+  set_fact:
+    mysql_pre_req_packages:
+      - libselinux-python
+      - mysql-devel
+      - python-devel
+      - python-pip
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_python_version is version('3', '<')
+
+- name: set_facts | Setting RedHat Facts
+  set_fact:
+    mysql_pre_req_packages:
+      - mysql-devel
+      - python3-devel
+      - python3-libselinux
+      - python3-pip
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_python_version is version('3', '>=')

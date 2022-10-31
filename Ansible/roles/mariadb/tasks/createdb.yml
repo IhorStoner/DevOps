@@ -1,0 +1,8 @@
+- name: Create new DB
+  mysql_db: name="{{ db_name }}" state=present login_user="root" login_password="{{ root_pass }}"
+
+- name: Copy sample data
+  copy: src=dump.sql dest=/tmp/dump.sql
+
+- name: Insert sample data
+  shell: cat /tmp/dump.sql | mysql -u "root" -p"{{ root_pass }}" "{{ db_name }}"

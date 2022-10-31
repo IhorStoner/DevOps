@@ -1,0 +1,16 @@
+---
+- block: #====== Block for RedHat
+    - name: Installing mariaDB server
+      yum:
+        name:
+          - mariadb
+          - mariadb-server
+        state: latest
+
+    - name: redhat | Installing PyMySQL
+      pip:
+        name: PyMySQL
+        state: present
+
+    - name: Start mariaDB servers
+      service: name=mariadb state=started enabled=yes

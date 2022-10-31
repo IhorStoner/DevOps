@@ -1,0 +1,5 @@
+---
+# handlers file for apache
+- name: Restart apache RedHat
+  when: ansible_os_family == "RedHat"
+  service: name=httpd state=restarted

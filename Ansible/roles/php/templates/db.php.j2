@@ -1,0 +1,8 @@
+<?php
+
+$connection = new PDO('mysql:host=127.0.0.1;dbname=demo', 'root', '123456789');
+$statement  = $connection->query('SELECT message FROM demo');
+
+echo $statement;
+
+?>

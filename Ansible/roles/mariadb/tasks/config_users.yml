@@ -1,0 +1,33 @@
+---
+
+- name: configure_root_access | waiting for MySQL service
+  wait_for:
+    port: "3306"
+    delay: 10
+
+- name: configure_root_access | updating root passwords
+  mysql_user:
+    name: root
+    host: "localhost"
+    password: "{{ root_pass }}"
+    login_user: root
+    login_password: "{{ root_pass }}"
+    login_unix_socket: "{{ mysql_login_unix_socket|default(omit) }}"
+    check_implicit_admin: true
+  when: not ansible_check_mode
+
+- name: configure_root | configuring root my.cnf
+  template:
+    src: root/my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0600
+  when: ansible_os_family != "Debian"
+
+- name: mysql_check | configuring user permissions for MySQL
+  mysql_user:
+    name: "demo"
+    password: "demo"
+    priv: "*.*:SELECT"
+    state: present
